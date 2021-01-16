@@ -1,15 +1,16 @@
-import { Category } from './models/category.model';
-import { User } from './models/user.model';
-import { Global, Module } from '@nestjs/common';
-import { TypegooseModule } from 'nestjs-typegoose';
-import { DbService } from './db.service';
+import { Blog } from "./models/blog.model";
+import { Category } from "./models/category.model";
+import { User } from "./models/user.model";
+import { Global, Module } from "@nestjs/common";
+import { TypegooseModule } from "nestjs-typegoose";
+import { DbService } from "./db.service";
 
-const models = TypegooseModule.forFeature([User, Category]);
+const models = TypegooseModule.forFeature([User, Category, Blog]);
 
 @Global()
 @Module({
   imports: [
-    TypegooseModule.forRoot('mongodb://localhost/blog', {
+    TypegooseModule.forRoot("mongodb://localhost/blog", {
       useCreateIndex: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
