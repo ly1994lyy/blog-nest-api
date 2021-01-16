@@ -10,11 +10,16 @@ const models = TypegooseModule.forFeature([User, Category, Blog]);
 @Global()
 @Module({
   imports: [
-    TypegooseModule.forRoot("mongodb://localhost/blog", {
-      useCreateIndex: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
+    TypegooseModule.forRootAsync({
+      useFactory() {
+        return {
+          uri: process.env.DB_URL,
+          useCreateIndex: true,
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+          useFindAndModify: false,
+        };
+      },
     }),
     models,
   ],
