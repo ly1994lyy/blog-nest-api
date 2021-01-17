@@ -1,10 +1,15 @@
 import { Category } from "./category.model";
 import { ApiProperty } from "@nestjs/swagger";
-import { prop, Ref } from "@typegoose/typegoose";
+import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 
+@modelOptions({
+  schemaOptions: {
+    timestamps: true,
+  },
+})
 export class Blog {
   @ApiProperty({ title: "文章标题" })
-  @prop({ required: true })
+  @prop({ required: true, max: 20 })
   title: string;
 
   @ApiProperty({ title: "文章内容" })
